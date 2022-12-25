@@ -13,7 +13,7 @@ export const ListItem = styled.li`
   flex-basis: calc((100% - 3 * ${p => p.theme.space[4]}px) / 4);
 
   box-shadow: ${p => p.theme.shadows.first};
-  border-radius: ${p => p.theme.radii.normal};
+  border-radius: ${p => p.theme.radii.minimal};
 
   overflow: hidden;
   transform: scale(1);
