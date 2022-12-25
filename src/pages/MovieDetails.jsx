@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { getMovieDetails } from 'services/moviesApi';
@@ -7,7 +8,6 @@ import { Error } from 'components/Error/Error';
 import { Loader } from 'components/Loader/Loader';
 import { BackLink } from 'components/BackLink/BackLink';
 import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
-import { Suspense } from 'react';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
@@ -76,7 +76,7 @@ const MovieDetails = () => {
         />
       )}
 
-      <AdditionalInfo />
+      <AdditionalInfo location={backLinkHref} />
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

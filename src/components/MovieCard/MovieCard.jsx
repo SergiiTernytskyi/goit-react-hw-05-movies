@@ -32,7 +32,7 @@ export const MovieCard = ({ poster, title, vote, overview, year, genres }) => {
         <InfoTitle>Genres</InfoTitle>
         <GenresList>
           {genres.map(genre => {
-            return <Genres>{genre.name}</Genres>;
+            return <Genres key={genre.name}>{genre.name}</Genres>;
           })}
         </GenresList>
       </div>

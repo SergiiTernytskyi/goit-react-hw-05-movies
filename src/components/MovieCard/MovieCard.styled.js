@@ -10,6 +10,7 @@ export const Image = styled.img`
   display: block;
   width: 300px;
   height: auto;
+  object-fit: cover;
 `;
 
 export const MovieTitle = styled.h2`

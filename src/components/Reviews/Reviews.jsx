@@ -1,6 +1,7 @@
-import { Error } from 'components/Error/Error';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { Error } from 'components/Error/Error';
 import { getMovieReviews } from 'services/moviesApi';
 import { CommentatorName, List, ListItem } from './Rewiews.styled';
 
@@ -38,7 +39,7 @@ const Reviews = () => {
             return (
               <ListItem key={id}>
                 <CommentatorName>
-                  {author} ({data.toLocaleString()})
+                  <b>Author:</b> {author} ({data.toLocaleDateString()})
                 </CommentatorName>
                 <p>{content}</p>
               </ListItem>

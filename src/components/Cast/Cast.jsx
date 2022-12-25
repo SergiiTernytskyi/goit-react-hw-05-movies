@@ -1,8 +1,8 @@
 import { Error } from 'components/Error/Error';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMoviesCredit } from 'services/moviesApi';
 
+import { getMoviesCredit } from 'services/moviesApi';
 import commingSoon from '../../pictures/comming-soon.jpg';
 import { Character, Image, List, ListItem, Name, Wrapper } from './Cast.styled';
 

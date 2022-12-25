@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import { TbMovie } from 'react-icons/tb';
-import { useLocation } from 'react-router-dom';
 import { List, StyledLink } from './MoviesList.styled';
 
-export const MoviesList = ({ movies }) => {
-  const location = useLocation();
-
+export const MoviesList = ({ movies, location }) => {
   return (
     <List>
       {movies.map(({ id, original_title }) => {
@@ -28,4 +25,9 @@ MoviesList.propTypes = {
       original_title: PropTypes.string.isRequired,
     })
   ).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string,
+    state: PropTypes.string,
+  }),
 };
