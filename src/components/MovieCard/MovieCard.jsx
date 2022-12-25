@@ -34,10 +34,10 @@ export const MovieCard = ({ poster, title, vote, overview, year }) => {
   );
 };
 
-// MovieCard.propTypes = {
-//   poster: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   vote: PropTypes.number.isRequired,
-//   overview: PropTypes.string.isRequired,
-//   year: PropTypes.string.isRequired,
-// };
+MovieCard.propTypes = {
+  poster: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+};

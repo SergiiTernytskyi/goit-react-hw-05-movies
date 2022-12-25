@@ -10,8 +10,7 @@ import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
 import { Suspense } from 'react';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
   const { movieId } = useParams();
 
@@ -23,8 +22,6 @@ const MovieDetails = () => {
 
     const getDetail = async () => {
       try {
-        setIsLoading(true);
-
         const {
           poster_path,
           original_title,
@@ -40,25 +37,27 @@ const MovieDetails = () => {
           overview,
           release_date,
         };
-
         setMovie(fetchedDetails);
       } catch {
         setError('Something went wrong');
-      } finally {
-        setIsLoading(false);
       }
     };
     getDetail();
   }, [movieId]);
 
+  if (!movie) {
+    return;
+  }
+
   const { poster_path, original_title, vote_average, overview, release_date } =
     movie;
+
   return (
     <main>
       {error && <Error>{error}</Error>}
-      {isLoading && <Loader />}
       <BackLink to={backLinkHref}>Go back</BackLink>
-      {movie && (
+
+      {movie !== {} && (
         <MovieCard
           poster={poster_path}
           title={original_title}
@@ -67,6 +66,7 @@ const MovieDetails = () => {
           year={release_date}
         />
       )}
+
       <AdditionalInfo />
       <Suspense fallback={<Loader />}>
         <Outlet />

@@ -1,5 +1,4 @@
 import { Error } from 'components/Error/Error';
-import { Loader } from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMoviesCredit } from 'services/moviesApi';
@@ -9,14 +8,12 @@ import { Character, Image, List, ListItem, Name, Wrapper } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     const getDetails = async () => {
       try {
-        setIsLoading(true);
         const details = await getMoviesCredit(movieId);
 
         const fetchedDetails = details.cast.map(
@@ -27,8 +24,6 @@ const Cast = () => {
         setCast(fetchedDetails);
       } catch {
         setError('Something went wrong');
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -38,7 +33,6 @@ const Cast = () => {
   return (
     <>
       {error && <Error>{error}</Error>}
-      {isLoading && <Loader />}
       <List>
         {cast.map(({ id, profile_path, name, character }) => {
           return (
