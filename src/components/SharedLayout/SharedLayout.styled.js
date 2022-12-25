@@ -19,7 +19,7 @@ export const Header = styled.header`
   margin-bottom: ${p => p.theme.space[5]}px;
 
   color: ${p => p.theme.colors.primary};
-  background-color: ${p => p.theme.colors.background};
+  background-color: ${p => p.theme.colors.primary};
   box-shadow: ${p => p.theme.shadows.third};
 
   > nav {
@@ -36,6 +36,7 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: ${p => p.theme.colors.secondary};
 
+  background-color: ${p => p.theme.colors.background};
   font-size: ${p => p.theme.fontSizes.l}px;
   font-weight: ${p => p.theme.fontWeights.semibold};
 
@@ -43,5 +44,13 @@ export const StyledLink = styled(NavLink)`
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.primaryText};
     box-shadow: ${p => p.theme.shadows.second};
+  }
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.white};
+    background-color: ${p => p.theme.colors.primaryText};
   }
 `;

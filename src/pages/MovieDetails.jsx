@@ -28,6 +28,7 @@ const MovieDetails = () => {
           vote_average,
           overview,
           release_date,
+          genres,
         } = await getMovieDetails(movieId);
 
         const fetchedDetails = {
@@ -36,6 +37,7 @@ const MovieDetails = () => {
           vote_average,
           overview,
           release_date,
+          genres,
         };
         setMovie(fetchedDetails);
       } catch {
@@ -49,8 +51,14 @@ const MovieDetails = () => {
     return;
   }
 
-  const { poster_path, original_title, vote_average, overview, release_date } =
-    movie;
+  const {
+    poster_path,
+    original_title,
+    vote_average,
+    overview,
+    release_date,
+    genres,
+  } = movie;
 
   return (
     <main>
@@ -64,6 +72,7 @@ const MovieDetails = () => {
           vote={vote_average}
           overview={overview}
           year={release_date}
+          genres={genres}
         />
       )}
 

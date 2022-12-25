@@ -27,14 +27,12 @@ export const ListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 40px;
 `;
 
 export const StyledLink = styled(NavLink)`
   padding: ${p => p.theme.space[3]}px;
-  width: 100%;
-  height: 100%;
+  min-width: 100px;
+  height: 40px;
 
   text-decoration: none;
   text-align: center;
@@ -43,7 +41,7 @@ export const StyledLink = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.l}px;
   font-weight: ${p => p.theme.fontWeights.semibold};
   background-color: ${p => p.theme.colors.primary};
-  border-radius: ${p => p.theme.radii.minimal};
+  border-radius: ${p => p.theme.radii.normal};
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
