@@ -16,7 +16,6 @@ const Movies = () => {
   const movieName = searchParams?.get('query') ?? '';
 
   useEffect(() => {
-    setMovies([]);
     setError(null);
 
     if (movieName === '') {
@@ -27,10 +26,15 @@ const Movies = () => {
       try {
         setIsLoading(true);
 
-        const data = await searchMovie(movieName);
-        setMovies(data.results);
+        const movies = await searchMovie(movieName);
 
-        if (data.total_results === 0) {
+        const fetchedMovies = movies.results.map(({ id, original_title }) => {
+          return { id, original_title };
+        });
+
+        setMovies(fetchedMovies);
+
+        if (movies.total_results === 0) {
           setError('We did not find anything');
         }
       } catch {

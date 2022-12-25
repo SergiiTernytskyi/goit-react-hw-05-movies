@@ -19,11 +19,29 @@ const MovieDetails = () => {
   const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
+    setError(null);
+
     const getDetail = async () => {
       try {
         setIsLoading(true);
-        const detail = await getMovieDetails(movieId);
-        setMovie(detail);
+
+        const {
+          poster_path,
+          original_title,
+          vote_average,
+          overview,
+          release_date,
+        } = await getMovieDetails(movieId);
+
+        const fetchedDetails = {
+          poster_path,
+          original_title,
+          vote_average,
+          overview,
+          release_date,
+        };
+
+        setMovie(fetchedDetails);
       } catch {
         setError('Something went wrong');
       } finally {

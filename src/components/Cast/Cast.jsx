@@ -18,7 +18,13 @@ const Cast = () => {
       try {
         setIsLoading(true);
         const details = await getMoviesCredit(movieId);
-        setCast(details.cast);
+
+        const fetchedDetails = details.cast.map(
+          ({ id, name, character, profile_path }) => {
+            return { id, name, character, profile_path };
+          }
+        );
+        setCast(fetchedDetails);
       } catch {
         setError('Something went wrong');
       } finally {
@@ -34,21 +40,21 @@ const Cast = () => {
       {error && <Error>{error}</Error>}
       {isLoading && <Loader />}
       <List>
-        {cast.map(person => {
+        {cast.map(({ id, profile_path, name, character }) => {
           return (
-            <ListItem key={person.id}>
+            <ListItem key={id}>
               <Image
                 src={
-                  person.profile_path
-                    ? `https://image.tmdb.org/t/p/w500${person.profile_path}`
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w500${profile_path}`
                     : commingSoon
                 }
-                alt={person.name}
+                alt={name}
               />
               <Wrapper>
-                <Name>{person.name}</Name>
+                <Name>{name}</Name>
                 <Character>
-                  <b>Character:</b> {person.character}
+                  <b>Character:</b> {character}
                 </Character>
               </Wrapper>
             </ListItem>

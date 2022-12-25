@@ -4,23 +4,25 @@ import { getTrendingMovies } from 'services/moviesApi';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Error } from 'components/Error/Error';
-import { Loader } from 'components/Loader/Loader';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setError(null);
+
     const getMovies = async () => {
       try {
-        setIsLoading(true);
         const data = await getTrendingMovies();
-        setMovies(data.results);
+
+        const fetchedMovies = data.results.map(({ id, original_title }) => {
+          return { id, original_title };
+        });
+
+        setMovies(fetchedMovies);
       } catch {
         setError('Something went wrong');
-      } finally {
-        setIsLoading(false);
       }
     };
     getMovies();
@@ -28,10 +30,13 @@ const Home = () => {
 
   return (
     <main>
-      {error && <Error error={error} />}
-      {isLoading && <Loader />}
-      <PageTitle title="Trending today" />
-      {movies?.length > 0 && <MoviesList movies={movies} />}
+      {error && <Error>{error}</Error>}z
+      {movies?.length > 0 && (
+        <>
+          <PageTitle title="Trending today" />
+          <MoviesList movies={movies} />
+        </>
+      )}
     </main>
   );
 };
