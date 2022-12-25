@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <main>
-      {error && <Error>{error}</Error>}z
+      {error && <Error>{error}</Error>}
       {movies?.length > 0 && (
         <>
           <PageTitle title="Trending today" />
