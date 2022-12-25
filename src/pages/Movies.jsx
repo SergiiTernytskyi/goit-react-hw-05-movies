@@ -1,47 +1,66 @@
-import { MoviesList } from 'components/MoviesList/MoviesList';
-import { SearchBox } from 'components/SearchBox/SearchBox';
 import { useState, useEffect } from 'react';
-
+import { useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
+import { MoviesList } from 'components/MoviesList/MoviesList';
+import { SearchBox } from 'components/SearchBox/SearchBox';
 import { searchMovie } from 'services/moviesApi';
+import { Error } from 'components/Error/Error';
+import { Loader } from 'components/Loader/Loader';
 
 const Movies = () => {
-  const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieName = searchParams?.get('query') ?? '';
 
   useEffect(() => {
-    if (search === '') {
+    setMovies([]);
+    setError(null);
+
+    if (movieName === '') {
       return;
     }
 
     const getMovie = async () => {
       try {
-        const data = await searchMovie(search);
-        setMovies(data);
-      } catch {}
+        setIsLoading(true);
+
+        const data = await searchMovie(movieName);
+        setMovies(data.results);
+
+        if (data.total_results === 0) {
+          setError('We did not find anything');
+        }
+      } catch {
+        setError('Something went wrong');
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     getMovie();
-  }, [search]);
+  }, [movieName]);
 
   const searchHandler = event => {
     event.preventDefault();
 
     const movieSearch = event.target.search.value;
-
     if (movieSearch.trim() === '') {
       return toast.error('Enter something to search!!!');
     }
 
-    setSearch(movieSearch);
+    setSearchParams({ query: movieSearch.toLowerCase() });
     event.currentTarget.reset();
   };
 
   return (
     <main>
       <SearchBox onSubmit={searchHandler} />
-      <MoviesList movies={movies} />
+      {error && <Error>{error}</Error>}
+      {isLoading && <Loader />}
+      {movies.length > 0 && <MoviesList movies={movies} />}
     </main>
   );
 };

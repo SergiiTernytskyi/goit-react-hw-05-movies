@@ -3,7 +3,7 @@ import { getTrendingMovies } from 'services/moviesApi';
 
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { PageTitle } from 'components/PageTitle/PageTitle';
-import { Error } from 'components/ErrorMessage/Error';
+import { Error } from 'components/Error/Error';
 import { Loader } from 'components/Loader/Loader';
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
       try {
         setIsLoading(true);
         const data = await getTrendingMovies();
-        setMovies(data);
+        setMovies(data.results);
       } catch {
         setError('Something went wrong');
       } finally {

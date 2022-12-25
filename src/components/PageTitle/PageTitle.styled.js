@@ -5,5 +5,4 @@ export const Title = styled.h1`
 
   font-size: ${p => p.theme.fontSizes.xl}px;
   font-weight: ${p => p.theme.fontWeights.bold};
-  color: ${p => p.theme.colors.secondary};
 `;

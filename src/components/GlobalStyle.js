@@ -20,9 +20,13 @@ ol {
  
  body {
   margin: 0;
-  font-family: Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: ${p => p.theme.space[5]}px;
+  font-family: ${p => p.theme.fonts.body};
+
+  font-size: ${p => p.theme.fontSizes.m}px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  line-height: ${p => p.theme.lineHeights.body};
+  color: ${p => p.theme.colors.secondary};
 }
 
 code {
