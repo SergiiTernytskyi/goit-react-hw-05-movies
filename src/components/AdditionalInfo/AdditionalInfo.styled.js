@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -29,7 +29,7 @@ export const ListItem = styled.li`
   justify-content: center;
 `;
 
-export const StyledLink = styled(NavLink)`
+export const StyledLink = styled(Link)`
   padding: ${p => p.theme.space[3]}px;
   min-width: 100px;
   height: 40px;

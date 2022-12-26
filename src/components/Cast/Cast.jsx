@@ -33,28 +33,32 @@ const Cast = () => {
   return (
     <>
       {error && <Error>{error}</Error>}
-      <List>
-        {cast.map(({ id, profile_path, name, character }) => {
-          return (
-            <ListItem key={id}>
-              <Image
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w500${profile_path}`
-                    : commingSoon
-                }
-                alt={name}
-              />
-              <Wrapper>
-                <Name>{name}</Name>
-                <Character>
-                  <b>Character:</b> {character}
-                </Character>
-              </Wrapper>
-            </ListItem>
-          );
-        })}
-      </List>
+      {cast ? (
+        <List>
+          {cast.map(({ id, profile_path, name, character }) => {
+            return (
+              <ListItem key={id}>
+                <Image
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                      : commingSoon
+                  }
+                  alt={name}
+                />
+                <Wrapper>
+                  <Name>{name}</Name>
+                  <Character>
+                    <b>Character:</b> {character}
+                  </Character>
+                </Wrapper>
+              </ListItem>
+            );
+          })}
+        </List>
+      ) : (
+        <p>We don`t have the cast information for this movie.</p>
+      )}
     </>
   );
 };

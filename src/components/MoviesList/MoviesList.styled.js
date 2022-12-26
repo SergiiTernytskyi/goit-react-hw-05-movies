@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -10,7 +10,7 @@ export const List = styled.ul`
   margin-bottom: ${p => p.theme.space[4]}px;
 `;
 
-export const StyledLink = styled(NavLink)`
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   padding: ${p => p.theme.space[3]}px;
