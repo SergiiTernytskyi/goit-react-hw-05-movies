@@ -15,7 +15,7 @@ export const StyledLink = styled(NavLink)`
   align-items: center;
   padding: ${p => p.theme.space[3]}px;
   width: 100%;
-  height: 40px;
+  min-height: 40px;
 
   text-decoration: none;
   color: ${p => p.theme.colors.primaryText};

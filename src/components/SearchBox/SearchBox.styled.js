@@ -12,6 +12,7 @@ export const SearchForm = styled.form`
 
 export const Input = styled.input`
   padding: ${p => p.theme.space[3]}px;
+  min-width: 150px;
   width: 300px;
   height: 40px;
 

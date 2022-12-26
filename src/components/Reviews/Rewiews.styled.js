@@ -11,6 +11,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   padding: ${p => p.theme.space[4]}px;
 
+  width: 100%;
   background-color: ${p => p.theme.colors.primary};
   border-radius: ${p => p.theme.radii.normal};
   box-shadow: ${p => p.theme.shadows.first};

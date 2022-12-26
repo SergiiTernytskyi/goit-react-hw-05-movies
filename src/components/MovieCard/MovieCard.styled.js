@@ -1,23 +1,35 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  gap: ${p => p.theme.space[5]}px;
   margin-bottom: ${p => p.theme.space[5]}px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    gap: ${p => p.theme.space[5]}px;
+  }
 `;
 
 export const Image = styled.img`
   display: block;
+  margin-bottom: ${p => p.theme.space[4]}px;
   width: 300px;
   height: auto;
   object-fit: cover;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const MovieTitle = styled.h2`
   margin-bottom: ${p => p.theme.space[5]}px;
 
-  font-size: ${p => p.theme.fontSizes.xxl}px;
+  font-size: ${p => p.theme.fontSizes.l}px;
   font-weight: ${p => p.theme.fontWeights.bold};
+
+  @media (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.xxl}px;
+  }
 `;
 
 export const Score = styled.p`

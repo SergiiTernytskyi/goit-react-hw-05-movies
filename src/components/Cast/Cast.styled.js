@@ -10,7 +10,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   align-items: center;
   justify-content: center;
-  flex-basis: calc((100% - 3 * ${p => p.theme.space[4]}px) / 4);
+  flex-basis: 100%;
 
   box-shadow: ${p => p.theme.shadows.first};
   border-radius: ${p => p.theme.radii.minimal};
@@ -21,6 +21,14 @@ export const ListItem = styled.li`
 
   :hover {
     transform: scale(1.05);
+  }
+
+  @media (min-width: 768px) {
+    flex-basis: calc((100% - 3 * ${p => p.theme.space[4]}px) / 2);
+  }
+
+  @media (min-width: 900px) {
+    flex-basis: calc((100% - 3 * ${p => p.theme.space[4]}px) / 4);
   }
 `;
 
